@@ -5,6 +5,8 @@ import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
 import { config } from "./config";
+import partyRouter from "./routes/party/party-router";
+import guestRouter from "./routes/guests/guest-router";
 
 const app = express();
 
@@ -25,6 +27,8 @@ const verifyApiKey = (req, res, next) => {
 app.use(cors());
 app.use(morgan(morganOption));
 app.use(helmet());
+app.use("/party", partyRouter);
+app.use("/guest", guestRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello, world!");

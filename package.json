@@ -4,7 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "tsc && nodemon dist/server.js",
+        "start": "node dist/server.js"
     },
     "engines": {
         "node": "18.17.0"
@@ -26,7 +28,11 @@
         "joi": "^17.10.2",
         "knex": "^2.4.2",
         "morgan": "^1.10.0",
+        "nodemon": "^3.0.1",
         "ramda": "^0.29.0",
-        "xss": "^1.0.14"
+        "xss": "^1.0.14",
+        "pg": "^8.3.0",
+        "postgrator": "^7.0.0",
+        "postgrator-cli": "^6.0.0"
     }
 }

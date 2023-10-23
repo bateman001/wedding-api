@@ -4,7 +4,7 @@ import { config } from "./config";
 
 const db = knex({
     client: "pg",
-    connection: process.env.DATABASE_URL,
+    connection: config.DATABASE_URL,
     //@ts-ignore
     ssl: { rejectUnauthorized: false }
 });
