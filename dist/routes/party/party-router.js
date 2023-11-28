@@ -13,7 +13,7 @@ const createPartySchema = joi_1.default.object({
     allowed_party_number: joi_1.default.number().required()
 });
 /**
- * Get all shopify orders
+ * Creates new party
  * @request CreatePartyReq
  * @returns CreatePartyRes
  */
@@ -31,10 +31,32 @@ partyRouter.route("/createParty").post(jsonParser, async (req, res, next) => {
         next();
     }
 });
+/**
+ * Gets all parties
+ * @request CreatePartyReq
+ * @returns Party[]
+ */
 partyRouter.route("/getAllParties").get(async (req, res, next) => {
     const db = req.app.get("db");
     try {
         const parties = await party_service_1.PartyService.getAllParties(db);
+        res.json(parties);
+    }
+    catch (e) {
+        console.log("e", e);
+        res.status(500);
+        next();
+    }
+});
+/**
+ * Get's all Guests in a Party
+ * @params party_id
+ * @returns CreatePartyRes
+ */
+partyRouter.route("/getGuestsByParty/:party_id").get(async (req, res, next) => {
+    const db = req.app.get("db");
+    try {
+        const parties = await party_service_1.PartyService.getAllGuestsInParty(db, req.params.party_id);
         res.json(parties);
     }
     catch (e) {

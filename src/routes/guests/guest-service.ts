@@ -1,4 +1,4 @@
-import { CreateGuestReq, Guest } from "../../types/guest-type";
+import { CreateGuestReq, Guest, UpdateGuest } from "../../types/guest-type";
 
 export const GuestService = {
     createGuest: (db: any, data: CreateGuestReq): Guest => {
@@ -15,5 +15,15 @@ export const GuestService = {
     },
     getAllAttendingGuests: (db: any): Guest[] => {
         return db.from("guest").select("*").where("attending", true);
+    },
+    updateGuest: (db: any, id: number, data: UpdateGuest): Guest => {
+        return db
+            .from("guest")
+            .where("id", id)
+            .update(data)
+            .returning("*")
+            .then((rows: Guest[]) => {
+                return rows[0];
+            });
     }
 };

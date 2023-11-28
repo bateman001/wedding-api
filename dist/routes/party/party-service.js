@@ -13,6 +13,10 @@ exports.PartyService = {
     },
     getAllParties: (db) => {
         return db.from("party").select("*");
+    },
+    getAllGuestsInParty: (db, party_id) => {
+        return db.from("guest").select("*").where("party_id", party_id);
+        // return db.from("guest").select("*").where("party_id", party_id);
     }
 };
 //# sourceMappingURL=party-service.js.map

@@ -12,5 +12,10 @@ export const PartyService = {
     },
     getAllParties: (db: any) => {
         return db.from("party").select("*");
+    },
+    getAllGuestsInParty: (db: any, party_id) => {
+        return db.from("guest").select("*").where("party_id", party_id);
+
+        // return db.from("guest").select("*").where("party_id", party_id);
     }
 };

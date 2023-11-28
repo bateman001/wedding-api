@@ -16,6 +16,16 @@ exports.GuestService = {
     },
     getAllAttendingGuests: (db) => {
         return db.from("guest").select("*").where("attending", true);
+    },
+    updateGuest: (db, id, data) => {
+        return db
+            .from("guest")
+            .where("id", id)
+            .update(data)
+            .returning("*")
+            .then((rows) => {
+            return rows[0];
+        });
     }
 };
 //# sourceMappingURL=guest-service.js.map

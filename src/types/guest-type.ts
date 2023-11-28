@@ -18,3 +18,17 @@ export interface CreateGuestReq {
     party_id: number;
 }
 export interface CreateGuestRes extends Guest {}
+
+/**
+ * /UpdateGuest
+ */
+export interface UpdateGuest {
+    firstname: string;
+    lastname: string;
+    attending: boolean;
+    meal: string;
+}
+export interface UpdateGuestReq {
+    data: UpdateGuest;
+    id: number;
+}
