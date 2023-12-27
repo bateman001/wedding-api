@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
 const knex_1 = __importDefault(require("knex"));
 const config_1 = require("./config");
+console.log("config.DATABASE_URL", config_1.config.DATABASE_URL);
 const db = (0, knex_1.default)({
     client: "pg",
     connection: config_1.config.DATABASE_URL,
