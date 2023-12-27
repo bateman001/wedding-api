@@ -6,7 +6,9 @@ const db = knex({
     client: "pg",
     connection: config.DATABASE_URL,
     //@ts-ignore
-    ssl: { rejectUnauthorized: false }
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 app.listen(config.PORT, () => {

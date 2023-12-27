@@ -10,7 +10,9 @@ const db = (0, knex_1.default)({
     client: "pg",
     connection: config_1.config.DATABASE_URL,
     //@ts-ignore
-    ssl: { rejectUnauthorized: false }
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 app_1.default.listen(config_1.config.PORT, () => {
     console.log(`Server listening at http://localhost:${config_1.config.PORT}`);
