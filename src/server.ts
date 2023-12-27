@@ -2,7 +2,6 @@ import app from "./app";
 import knex from "knex";
 import { config } from "./config";
 
-console.log("config.DATABASE_URL", config.DATABASE_URL);
 const db = knex({
     client: "pg",
     connection: config.DATABASE_URL,
