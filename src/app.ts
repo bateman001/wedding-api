@@ -11,7 +11,7 @@ import guestRouter from "./routes/guests/guest-router";
 const app = express();
 
 const morganOption = config.NODE_ENV === "production" ? "tiny" : "common";
-const apiKey = process.env.API_KEY;
+const apiKey = config.API_KEY;
 
 // const jsonParser = express.json();
 const verifyApiKey = (req, res, next) => {
@@ -27,8 +27,8 @@ const verifyApiKey = (req, res, next) => {
 app.use(cors());
 app.use(morgan(morganOption));
 app.use(helmet());
-app.use("/party", partyRouter);
-app.use("/guest", guestRouter);
+app.use("/party", verifyApiKey, partyRouter);
+app.use("/guest", verifyApiKey, guestRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello, world!");
