@@ -47,6 +47,30 @@ partyRouter.route("/getAllParties").get(async (req, res, next) => {
     }
 });
 
+partyRouter.route("/getAllGuestsInAllParties").get(async (req, res, next) => {
+    const db = req.app.get("db");
+    try {
+        const parties: Party[] = await PartyService.getAllParties(db);
+
+        const allParties = [];
+
+        for (const party of parties) {
+            const guests = await PartyService.getAllGuestsInParty(db, party.id);
+            const x = {
+                party_name: party.party_name,
+                guests: guests
+            };
+
+            allParties.push(x);
+        }
+        res.json(allParties);
+    } catch (e) {
+        console.log("e", e);
+        res.status(500);
+        next();
+    }
+});
+
 /**
  * Get's all Guests in a Party
  * @params party_id

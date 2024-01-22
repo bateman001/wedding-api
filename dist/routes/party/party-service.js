@@ -16,7 +16,6 @@ exports.PartyService = {
     },
     getAllGuestsInParty: (db, party_id) => {
         return db.from("guest").select("*").where("party_id", party_id);
-        // return db.from("guest").select("*").where("party_id", party_id);
     }
 };
 //# sourceMappingURL=party-service.js.map
